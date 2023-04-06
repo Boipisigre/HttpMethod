@@ -12,13 +12,13 @@ def get_index(page):
 def homepage():
     return get_index("index.html")
 
-@app.route('/success/<name>')
+@app.route('/successP/<name>')
 def PostSuccess(name):
-   return 'welcome POST %s' % name
+    return '<a class="menu-lien" href="/">Accueil</a> <br> Welcome POST %s' % name
 
-@app.route('/success/<name>')
+@app.route('/successG/<name>')
 def GetSuccess(name):
-   return 'welcome GET %s' % name
+    return '<a class="menu-lien" href="/">Accueil</a> <br> welcome GET %s' % name
 
 @app.route('/loginP')
 def loginP():
@@ -37,13 +37,13 @@ def login():
       user = request.args.get('nm')
       return redirect(url_for('GetSuccess',name = user))
 
-@app.route('/connect')
+@app.route('/connect' ,methods = ['POST', 'GET'])
 def connectP():
    if request.method == 'POST':
       user = request.form['nm']
       return redirect(url_for('PostSuccess',name = user))
    else:
-      return get_index("loginP.html")
+      return get_index("connecter.html")
 
 if __name__ == '__main__':
    app.run(debug = True)
